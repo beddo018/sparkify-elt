@@ -3,7 +3,7 @@ import configparser
 
 # CONFIG
 config = configparser.ConfigParser()
-config.read('dwh.cfg')
+config.read('dwh.config')
 arn = config.get('IAM_ROLE', 'ARN')
 log_data = config.get('S3', 'LOG_DATA')
 song_data = config.get('S3', 'SONG_DATA')
@@ -119,14 +119,14 @@ time_table_create = ("""
 # STAGING TABLES
 
 staging_events_copy = ("""
-copy log_data from '{}' 
+copy log_data from {} 
 credentials 'aws_iam_role={}'
 format as json {}
 gzip region 'us-west-2';
 """).format(log_data, arn, log_json)
 
 staging_songs_copy = ("""
-copy song_data from '{}' 
+copy song_data from {} 
 credentials 'aws_iam_role={}'
 gzip region 'us-west-2';
 """).format(song_data, arn)
