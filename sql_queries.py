@@ -56,7 +56,7 @@ staging_songs_table_create = ("""
         song_id VARCHAR(100) NOT NULL,
         title VARCHAR(100) NOT NULL,
         duration DECIMAL NOT NULL,
-        year SMALLINT,
+        year SMALLINT
     )
 """)
 
